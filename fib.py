@@ -31,6 +31,8 @@ def recurse():
 
 
 def recursive_fib(n):
+    ''' calculate fib recursively. slow as hell. use memoization.
+    '''
     if n == 1:
         return 0
     if n == 0:
@@ -43,6 +45,8 @@ def recursive_fib(n):
 
 
 def iterative_fib(n):
+    ''' calculate fib iteratively. decently fast. better methods?
+    '''
     first = 0
     second = 1
     for i in xrange(1, n):
