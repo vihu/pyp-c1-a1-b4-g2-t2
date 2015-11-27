@@ -17,6 +17,18 @@ class InputError(Exception):
     pass
 
 
+class memoize(dict):
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, *args):
+        return self[args]
+
+    def __missing__(self, key):
+        self[key] = self.func(*key)
+        return self[key]
+
+
 def recurse():
     parser = ArgumentParser(description='check recurse option')
     parser.add_argument('--recursive', action='store_true', default=False, dest='recurse_switch',
@@ -30,6 +42,7 @@ def recurse():
     return recurse_flag
 
 
+@memoize
 def recursive_fib(n):
     ''' calculate fib recursively. slow as hell. use memoization.
     '''
